@@ -1,24 +1,14 @@
-# 🛒 Sistema de Gestión de Tienda (Consola)
+# 🛒 Proyecto de Java de gestión de productos, pedidos y facturas por consola
 
-¡Bienvenido al proyecto de tienda por terminal! Esta es una aplicación de comercio electrónico en **Java puro (sin dependencias externas)**, desarrollada como práctica de Programación (2º DAW). Su objetivo es demostrar el dominio de la **Programación Orientada a Objetos (POO)**, uso avanzado de colecciones, patrón MVC y manipulación de archivos.
+Este proyecto se trata de un programa desarrollado en **Java puro (sin dependencias externas)**, realizado para la asignatura Optativa de 2º DAW. Su objetivo es demostrar el dominio de la **Programación Orientada a Objetos (POO)**, uso avanzado de colecciones, patrón MVC y manipulación de archivos.
 
-![Bienvenida a la tienda](./capturas/01_bienvenida.png)
+---
 
 ## 🛠 Arquitectura y Decisiones de Diseño
 
-El sistema está estructurado bajo un **Patrón MVC estricto (Modelo - Vista - Controlador)**, garantizando que el código sea mantenible, limpio y escalable:
+El sistema está estructurado bajo un **Patrón MVC estricto (Modelo - Vista - Controlador)**, garantizando que el código sea mantenible, limpio y escalable.
 
-```mermaid
-graph TD
-    A((👤 Usuario)) -->|Interactúa por consola| B[🖥️ Vista]
-    B -->|Envía opciones seleccionadas| C{⚙️ Controlador}
-    C -->|Solicita impresión de menús/datos| B
-    C -->|Invoca lógica de negocio| D[📦 Gestores del Modelo]
-    D -->|Devuelven Objetos/Resultados| C
-    D -->|Lectura / Escritura persistente| E[(📄 Ficheros CSV y Logs)]
-```
-
-La estructura física del proyecto refleja claramente este patrón:
+La estructura física del proyecto refleja claramente esta separación de responsabilidades:
 
 ```text
 src/main/java/
@@ -67,48 +57,64 @@ Como funcionalidad extra de la práctica, he decidido implementar un sistema de 
 - **Bloqueo de seguridad**: Si alguien introduce mal su contraseña 3 veces seguidas, su cuenta queda inactiva (bloqueada) por seguridad. El administrador puede volver a activarla desde su menú.
 - **Registro de actividad (Logs)**: Para tener un control de lo que pasa en la tienda, he añadido un pequeño archivo `registro_actividad.log` donde se guardan de fondo algunas acciones importantes (como cuándo entra un usuario, compras nuevas o bloqueos de cuenta).
 
-![Proceso de Registro](./capturas/02_registro.png)
-
 ---
 
-## 📸 Tour Visual del Sistema
+## 📸 Demostración Visual de Menús y Flujos
 
-### 1. El Backoffice: Modo Administrador 🛡️
-El Administrador tiene el control absoluto. Puede gestionar el catálogo de productos y los usuarios de la plataforma.
+A continuación se incluyen las capturas de ejecución del programa organizadas por secciones. Haz clic en cada desplegable para ver las pantallas en detalle:
 
-![Menú Administrador](./capturas/03_login_admin.png)
-<p align="center"><i>Al acceder, el Administrador tiene su propio menú exclusivo de 6 opciones.</i></p>
+<details>
+<summary><b>🔑 1. Acceso, Registro y Seguridad (Clic para desplegar)</b></summary>
+<br>
 
-![Gestión de Usuarios](./capturas/07_listar_usuarios.png)
-<p align="center"><i>Listado general de usuarios. Se aprecia visualmente con colores (rojo/verde) el estado de cada cuenta.</i></p>
+<p align="center">
+  <b>Pantalla de bienvenida y opciones iniciales</b><br>
+  <img src="./capturas/01_bienvenida.png" width="550" alt="Bienvenida" /><br><br>
+  <b>Registro de nuevos usuarios con rol configurable</b><br>
+  <img src="./capturas/02_registro.png" width="550" alt="Registro" />
+</p>
 
-![Bloqueo/Desbloqueo](./capturas/08_bloqueo_desbloqueo.png)
-<p align="center"><i>El administrador puede <b>Desbloquear</b> cuentas suspendidas o bloquear usuarios problemáticos en un solo paso, invirtiendo su estado de forma dinámica.</i></p>
+</details>
 
-### 2. La Experiencia de Compra: Modo Cliente 🛍️
-Cuando un cliente inicia sesión, su entorno es limpio y directo al grano: comprar.
+<details>
+<summary><b>🛡️ 2. Panel de Administrador (Catálogo y Usuarios) (Clic para desplegar)</b></summary>
+<br>
 
-![Menú Cliente](./capturas/04_menu_cliente.png)
+<p align="center">
+  <b>Menú exclusivo de Administración</b><br>
+  <img src="./capturas/03_login_admin.png" width="550" alt="Menú Admin" /><br><br>
+  <b>Gestión y alta de productos en el catálogo</b><br>
+  <img src="./capturas/05_menu_productos.png" width="550" alt="Gestión Productos" /><br><br>
+  <b>Listado de usuarios con colores de estado (Activo / Inactivo)</b><br>
+  <img src="./capturas/07_listar_usuarios.png" width="550" alt="Listar Usuarios" /><br><br>
+  <b>Bloqueo y desbloqueo de cuentas de usuario</b><br>
+  <img src="./capturas/08_bloqueo_desbloqueo.png" width="550" alt="Bloqueo y Desbloqueo" />
+</p>
 
-El cliente puede navegar por el catálogo completo de la tienda, listando los productos físicos y digitales:
+</details>
 
-![Catálogo](./capturas/04_catalogo_productos.png)
-<p align="center"><i>Catálogo tabulado de forma inteligente y automática.</i></p>
+<details>
+<summary><b>🛍️ 3. Experiencia de Cliente (Catálogo, Carrito y Pedidos) (Clic para desplegar)</b></summary>
+<br>
 
-Puede buscar productos filtrando por categoría o presupuesto:
-![Búsqueda](./capturas/06_busqueda_productos.png)
+<p align="center">
+  <b>Menú limpio y directo para el cliente</b><br>
+  <img src="./capturas/04_menu_cliente.png" width="550" alt="Menú Cliente" /><br><br>
+  <b>Catálogo de productos formateado en tabla</b><br>
+  <img src="./capturas/04_catalogo_productos.png" width="550" alt="Catálogo" /><br><br>
+  <b>Filtro y búsqueda de productos</b><br>
+  <img src="./capturas/06_busqueda_productos.png" width="550" alt="Búsqueda" /><br><br>
+  <b>Cesta de la compra con cálculo en tiempo real</b><br>
+  <img src="./capturas/09_carrito.png" width="550" alt="Carrito" /><br><br>
+  <b>Confirmación interactiva de compra</b><br>
+  <img src="./capturas/10_confirmar_compra.png" width="550" alt="Confirmar Compra" /><br><br>
+  <b>Emisión y visualización de factura detallada</b><br>
+  <img src="./capturas/11_factura.png" width="550" alt="Factura" /><br><br>
+  <b>Historial de pedidos realizados</b><br>
+  <img src="./capturas/12_historial_pedidos.png" width="550" alt="Historial" />
+</p>
 
-Tras añadir productos, el carrito de compra le desglosa subtotales y unidades en tiempo real:
-![Carrito](./capturas/09_carrito.png)
-
-Al tramitar el pedido, se solicita confirmación interactiva para evitar errores:
-![Confirmar Compra](./capturas/10_confirmar_compra.png)
-
-Si la compra se concreta, el sistema vacía la cesta y genera automáticamente una **Factura detallada** que se almacena en el sistema y se muestra en pantalla:
-![Factura Emitida](./capturas/11_factura.png)
-
-Por último, tanto el cliente (sus propios pedidos) como el administrador (los pedidos de toda la tienda) pueden consultar el historial global de operaciones generadas:
-![Historial Pedidos](./capturas/12_historial_pedidos.png)
+</details>
 
 ---
 
